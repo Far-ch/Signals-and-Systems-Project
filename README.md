@@ -1,1 +1,81 @@
-# Signals-and-Systems-Project
+# Signals-and-Systems-Project 
+Object Detection and Tracking    
+Authors:  Farnoosh Choogani ,Mohammadreza Ajorloo, Mohammadmobin Jelodar   
+Instructor: Dr. Mojahedian — Department of Electrical Engineering, Sharif University of Technology       
+Course: Signals and Systems (Spring 2025)      
+## Project Overview
+This repository contains an end-to-end pipeline for object detection and tracking in video. It implements and compares three standard tracking algorithms (CSRT, MOSSE, KCF) and introduces our custom tracker, KJF. The pipeline initializes tracking by detecting the target in the first frame using a pre-trained model (YOLO or Faster R-CNN) and then follows the object across successive frames with high accuracy and efficiency.
+### Key Goals:
++ Detect the target in the first video frame using a deep‑learning model   
++ Track the object with CSRT, MOSSE, KCF, and our custom KJF algorithm    
++ Compare performance by accuracy, robustness, and speed (FPS)     
++ Visualize results through annotated video outputs
+## Table of Contents
+
+- [Features](#features)  
+- [Requirements](#requirements)   
+- [Algorithms](#algorithms)  
+  - [Detection](#detection)  
+  - [Tracking](#tracking)  
+  - [Our Custom Algorithm (KJF)](#our-custom-algorithm-kjf)  
+- [Evaluation](#evaluation)
+  ## Features
+
+- **First-frame Detection**  
+  - YOLO (v5/v8)  
+  - Faster R-CNN  
+- **Tracking Algorithms**  
+  - CSRT (Discriminative Correlation Filter with Channel & Spatial Reliability)  
+  - MOSSE (Minimum Output Sum of Squared Error)  
+  - KCF (Kernelized Correlation Filter)  
+  - **KJF**: our custom tracker combining periodic detector refresh & Kalman fusion  
+- **Performance Comparison**  
+  - Accuracy vs. speed (FPS) analysis on multiple test videos  
+- **Visualization**  
+  - Annotated output videos for qualitative assessment
+  ## Requirements
+
+- Python 3.7+  
+- OpenCV  
+- PyTorch (for YOLO, Faster R-CNN) or TensorFlow  
+- NumPy
+  ## Installation
+  Ensure you have Python 3 installed. Then, install the required dependencies:
+```bash
+pip install numpy opencv-python torch torchvision matplotlib 
+```
+## Algorithms
+
+### Detection
+- **YOLO**: real-time, single-stage detector.  
+- **Faster R-CNN**: two-stage detector for higher precision.
+
+### Tracking
+- **CSRT**  
+  - Robust to occlusion & deformation  
+  - ~45 FPS on 1280×720 (CPU)  
+- **MOSSE**  
+  - Ultra-fast (~220 FPS)  
+  - Struggles with scale changes & occlusion  
+- **KCF**  
+  - Kernelized, balanced speed (~120 FPS) & accuracy  
+
+### Our Custom Algorithm (KJF)
+- Combines periodic detector refresh with Kalman filter fusion  
+- Achieves high speed (up to ~120–75 FPS) while retaining robustness  
+
+## Evaluation
+
+| Video    | KCF FPS | MOSSE FPS | CSRT FPS | KJF FPS |
+|----------|---------|-----------|----------|---------|
+| car1     | 36.0    | 43.8      | 35.8     | 120.3   |
+| person1  |  9.4    | 25.9      |  3.2     |  48.9   |
+| person2  | 15.1    | 29.4      |  4.9     |  43.6   |
+| person3  | 14.1    | 21.0      |  5.2     |  41.3   |
+| person4  | 42.2    | 55.0      |  1.5     |  74.5   |
+
+- **CSRT**: highest accuracy under occlusion but lowest FPS.  
+- **MOSSE**: highest FPS but less robust.  
+- **KCF**: trade-off between speed and robustness.  
+- **KJF**: our method achieves the highest FPS with competitive robustness.
+
