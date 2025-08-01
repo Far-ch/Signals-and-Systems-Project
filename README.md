@@ -1,6 +1,6 @@
 # Signals-and-Systems-Project 
 Object Detection and Tracking    
-Authors:  Farnoosh Choogani ,Mohammadreza Ajorloo, Mohammadmobin Jelodar  (Group number : 10)
+Authors:  Farnoosh Choogani ,Mohammadreza Ajorloo, Mohammadmobin Jelodar  (Group number : 10)     
 Instructor: Dr. Mojahedian — Department of Electrical Engineering, Sharif University of Technology       
 Course: Signals and Systems (Spring 2025)      
 ## Project Overview
